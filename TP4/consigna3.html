@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP4 - Desarrollo Web</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+     crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+     crossorigin="anonymous"></script>
+    <script>
+        function getJson(Id) {
+            $.ajax({
+                url: 'consigna2.php',
+                type:'GET',
+                data: {"id":Id},
+                beforeSend: function () {
+                    $("#viewJson").html("Procesando, espere por favor...");
+                },
+                success:  function (data) {
+                    $("#viewJson").html(data);
+                }
+            }); 
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6" style="margin-top: 20px;">
+            <div class="card">
+                <div class="card-header text-center">
+                    <img src="https://natlife.com.ar/logo200.jpg" width="150px" style="float: left;" alt="" />
+                    <h2 class="card-title">Consigna 3: Registro en Base de Datos a Json</h2>
+                </div>
+                <div class="card-header">
+                    <h2>Consulta de Pedido por ID</h3>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <input type="number" class="form-control" id="id" name="id" placeholder="Pedido" required>
+                    </div>
+                    <div class="mb-3">
+                        <a href="javascript:;" onclick=" getJson($('#id').val(),);return false;"
+                            class="text-decoration-none"  style="color: grey;" title="VER">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-view-list" viewBox="0 0 16 16">
+                                <path d="M3 4.5h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3zM1 2a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 2zm0 12a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 14z"/>
+                            </svg>Obtener JSON</a>
+                    </div>
+                    <div class="mb-3">
+                        <textarea name="viewJson" id="viewJson" cols="60" rows="8"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
